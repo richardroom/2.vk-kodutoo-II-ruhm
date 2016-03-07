@@ -17,7 +17,7 @@
      // KÕIK muuutujad, mida muudetakse ja on rakendusega seotud defineeritakse siin
      this.click_count = 0;
      this.currentRoute = null;
-     console.log(this);
+     //console.log(this);
 
 	 // hakkan hoidma koiki purke
 	 this.jobs = [];
@@ -32,13 +32,13 @@
      'home-view': {
        'render': function(){
          // käivitame siis kui lehte laeme
-         console.log('>>>>avaleht');
+        // console.log('>>>>avaleht');
        }
      },
      'list-view': {
        'render': function(){
          // käivitame siis kui lehte laeme
-         console.log('>>>>loend');
+      //   console.log('>>>>loend');
 
 		 //simulatsioon laeb kaua
 		 window.setTimeout(function(){
@@ -57,7 +57,7 @@
    Homework.prototype = {
 
      init: function(){
-       console.log('Rakendus läks tööle!');
+      // console.log('Rakendus läks tööle!');
 
        //kuulan aadressirea vahetust
        window.addEventListener('hashchange', this.routeChange.bind(this));
@@ -75,7 +75,7 @@
 	   if(localStorage.jobs){
 		   //vottan stringi ja teen tagasi objektideks
 		   this.jobs = JSON.parse(localStorage.jobs);
-		   console.log('laadisin localStorageist massiivi' + this.jobs.length);
+		  // console.log('laadisin localStorageist massiivi' + this.jobs.length);
 
 		   //tekitan loendi htmli
 		   this.jobs.forEach(function(job){
@@ -99,11 +99,11 @@
 
 	 search: function(event){
 		 //otsikasti vaartust
-		 var needle = document.querySelector('#search').value.toLowerCase();
-		 console.log(needle);
+		// var needle = document.querySelector('#search').value.toLowerCase();
+		// console.log(needle);
 
 		 var list = document.querySelectorAll('ul.list-of-jobs li');
-		 console.log(list);
+		// console.log(list);
 
 		 for(var i = 0; i < list.length; i++){
 
@@ -146,7 +146,7 @@
 		 document.querySelector('.list-of-jobs').appendChild(new_job.createHtmlElement());
 
 		 this.click_count++;
-		 console.log(this.click_count);
+		 //console.log(this.click_count);
 
      },
 
@@ -154,7 +154,7 @@
 
        //kirjutan muuutujasse lehe nime, võtan maha #
        this.currentRoute = location.hash.slice(1);
-       console.log(this.currentRoute);
+      // console.log(this.currentRoute);
 
 	   //kas meil on selline leht olemas?
 	   if(this.routes[this.currentRoute]){
@@ -188,8 +188,8 @@
 	   this.title = title;
 	   this.description = description;
      this.deadline = deadline;
-	   console.log('created new job');
-     console.log(title + '' + description + '' + deadline);
+	  // console.log('created new job');
+    // console.log(title + '' + description + '' + deadline);
    };
 
    Job.prototype = {
@@ -208,7 +208,7 @@
 		   var span_with_content = document.createElement('span');
 		   span_with_content.className = 'content';
 
-		   var content = document.createTextNode(this.title + ' | ' + this.description + ' | ' + this.deadline );
+		   var content = document.createTextNode(this.title + ' | Kirjeldus: ' + this.description + ' | Tähtaeg: ' + this.deadline );
 		   span_with_content.appendChild(content);
 
 
@@ -218,13 +218,7 @@
 	   }
    };
 
-   /*var button=document.getElementsByTagName('button')[0];
-   var select=document.getElementsByTagName('list-of-jars')[0];
-   button.onclick=function(){
-	   select.removeChild(select.options[select.selectedIndex]);
-	};*/
 
-   // kui leht laetud käivitan Moosipurgi rakenduse
    window.onload = function(){
      var app = new Homework();
    };

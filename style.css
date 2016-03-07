@@ -96,7 +96,7 @@ main {
     border: 0;
     border-bottom: 1px solid rgb(146, 168, 209);
 }
-.add-new-homework {
+.add-new-job {
     background-color: #fff;
     padding: 10px;
     border: 2px solid rgb(146, 168, 209);
@@ -118,12 +118,12 @@ td {
     color: rgb(146, 168, 209);
     border: 1px solid rgb(146, 168, 209);
 }
-.list-of-homeworks {
+.list-of-jobs {
     list-style-type: none;
     padding-left: 0;
     margin-bottom: 60px;
 }
-.list-of-homeworks li {
+.list-of-jobs li {
     margin-bottom: 10px;
 
 }
