@@ -2,44 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Moosipurk v0.1</title>
+  <title>Koduste tööde ülevaade</title>
   <script src="app.js" charset="utf-8"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	
+
 	<nav class="menu">
-	
+
 		<ul class="menu-list">
 			<li class="menu-item"><a href="#home-view" class="menu-link home-view active-menu">Avaleht</a></li>
-			<li class="menu-item"><a href="#list-view" class="menu-link list-view">Loend</a></li>
-			<li class="menu-item"><a href="#manage-view" class="menu-link manage-view">Haldus</a></li>
+			<li class="menu-item"><a href="#list-view" class="menu-link list-view">Kodutööde loend</a></li>
+			<li class="menu-item"><a href="#manage-view" class="menu-link manage-view">Uus kodutöö</a></li>
 		</ul>
-	
+
 	</nav>
-	
+
 	<main role="main">
-		
+
 		<div id="list-view">
 			<h1>Loend</h1>
 			<p class="loading">Laeb...</p><br>
 			<input type="search" placeholder="Enter keyword" id="search"><br>
-			<ul class="list-of-jars"></ul>
+			<ul class="list-of-jobs"></ul>
 		</div>
 		<div id="manage-view">
-			<h1>Haldus</h1>
-			<label for="title">Title: </label><br>
+			<h1>Lisa siia uus kodutöö</h1>
+			<label for="title">Aine: </label><br>
 			<input type="text" name="title" class="title"><br>
-			
-			<label for="ingredients">Ingredients: </label><br>
-			<input type="text" name="ingredients" class="ingredients"><br>
-			
-			<button class="add-new-jar">Lisa uus purk</button>
+
+			<label for="description">Kirjeldus: </label><br>
+			<input type="text" name="description" class="description"><br>
+
+      <label for="deadline">Tähtaeg: </label><br>
+      <input type="date" name="date" class="deadline"><br>
+
+      </br>
+
+			<button class="add-new-homework">Lisa uus kodutöö</button>
 		</div>
 		<div id="home-view">
 			<h1>Avaleht</h1>
 		</div>
-	
+
 	</main>
 </body>
 </html>
