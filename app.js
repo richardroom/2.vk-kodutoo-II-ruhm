@@ -97,6 +97,49 @@
 	   //document.querySelector('#search').addEventListener('keyup', this.search.bind(this));
      },
 
+     deleteJar: function(event){
+
+       //millele
+       console.log(event.target);
+
+       //mille sees
+       console.log(event.target.parentNode);
+
+       //mille sees
+       console.log(event.target.parentNode.parentNode);
+
+       //id
+       console.log(event.target.dataset.id);
+
+
+
+       var c = confirm("Oled kindel?");
+
+       if(!c){ return; }
+
+     
+
+     //Kustutan htmli
+      var li = event.target.parentNode;
+      var ul = event.target.parentNode.parentNode;
+
+     ul.removeChild(li);
+
+     var delete_id = event.target.dataset.id;
+     //kututan objekti localStorageist
+     for(var i = 0; i < this.jars.length; i++){
+       if(this.jobs[i].id == delete_id){
+         this.jobs.splice(i, 1);
+         break;
+       }
+     }
+
+     localStorage.setItem('jars', JSON.stringify(this.jars));
+
+   },
+
+
+
 	 search: function(event){
 		 //otsikasti vaartust
 		// var needle = document.querySelector('#search').value.toLowerCase();
@@ -120,8 +163,11 @@
 				 //ei ole, index on -1
 				 li.style.display = 'none';
 			 }
-		 };
+		 }
 	 },
+
+
+
 
 
      addNewClick: function(event){
@@ -184,7 +230,8 @@
 
    }; //MOOSIPURGI LOPP
 
-   var Job = function(title, description, deadline){
+   var Job = function(new_id, title, description, deadline){
+     this.id = new_id;
 	   this.title = title;
 	   this.description = description;
      this.deadline = deadline;
@@ -217,6 +264,42 @@
 		   return li;
 	   }
    };
+
+       //delete nupp
+       var span_delete = document.createElement('span');
+       span_delete.style.color = "red";
+       span_delete.style.cursor = "pointer";
+
+       //Kututamiseks id kaasa
+       span_delete.setAttribute("data-id", this.id);
+
+       span_delete.innerHTML = " Delete";
+
+       li.appendChild(span_delete);
+
+       ///keegi vajutas nuppu
+       span_delete.addEventListener("click", Moosipurk.instance.deleteJar.bind(Homework.instance));
+
+       return li;
+
+     }
+  };
+      ///HELPER
+      function guid(){
+       var d = new Date().getTime();
+       if(window.performance && typeof window.performance.now === "function"){
+           d += performance.now(); //use high-precision timer if available
+       }
+       var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+           var r = (d + Math.random()*16)%16 | 0;
+           d = Math.floor(d/16);
+           return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+       });
+       return uuid;
+      }
+
+
+
 
 
    window.onload = function(){
