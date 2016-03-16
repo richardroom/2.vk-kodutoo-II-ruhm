@@ -79,7 +79,7 @@
 
 		   //tekitan loendi htmli
 		   this.jobs.forEach(function(job){
-			  var new_job = new Job(job.title, job.description, job.deadline);
+			  var new_job = new Job(job.id, job.title, job.description, job.deadline);
 
 			  var li = new_job.createHtmlElement();
 			  document.querySelector('.list-of-jobs').appendChild(li);
@@ -97,7 +97,7 @@
 	   //document.querySelector('#search').addEventListener('keyup', this.search.bind(this));
      },
 
-     deleteJar: function(event){
+     deleteJob: function(event){
 
        //millele
        console.log(event.target);
@@ -117,24 +117,25 @@
 
        if(!c){ return; }
 
-     
+
 
      //Kustutan htmli
-      var li = event.target.parentNode;
-      var ul = event.target.parentNode.parentNode;
+     var ul = event.target.parentNode.parentNode;
+     var li = event.target.parentNode;
+
 
      ul.removeChild(li);
 
      var delete_id = event.target.dataset.id;
      //kututan objekti localStorageist
-     for(var i = 0; i < this.jars.length; i++){
+     for(var i = 0; i < this.jobs.length; i++){
        if(this.jobs[i].id == delete_id){
          this.jobs.splice(i, 1);
          break;
        }
      }
 
-     localStorage.setItem('jars', JSON.stringify(this.jars));
+     localStorage.setItem('jobs', JSON.stringify(this.jobs));
 
    },
 
@@ -142,7 +143,7 @@
 
 	 search: function(event){
 		 //otsikasti vaartust
-		// var needle = document.querySelector('#search').value.toLowerCase();
+		var needle = document.querySelector('#search').value.toLowerCase();
 		// console.log(needle);
 
 		 var list = document.querySelectorAll('ul.list-of-jobs li');
@@ -180,7 +181,8 @@
 
 		 console.log(title + '' + description + '' + deadline);
 		 //1. tekitan uue Jar'i
-		 var new_job = new Job(title, description, deadline);
+     var id = guid();
+		 var new_job = new Job(id, title, description, deadline);
 
 		 // lisan massiivi purgi
 		 this.jobs.push(new_job);
@@ -189,7 +191,7 @@
 		 localStorage.setItem('jobs', JSON.stringify(this.jobs));
 
 		 //2. lisan selle htmli listi juurde
-		 document.querySelector('.list-of-jobs').appendChild(new_job.createHtmlElement());
+		 document.querySelector('.list-of-jobs');
 
 		 this.click_count++;
 		 //console.log(this.click_count);
@@ -261,10 +263,6 @@
 
 		   li.appendChild(span_with_content);
 
-		   return li;
-	   }
-   };
-
        //delete nupp
        var span_delete = document.createElement('span');
        span_delete.style.color = "red";
@@ -278,12 +276,13 @@
        li.appendChild(span_delete);
 
        ///keegi vajutas nuppu
-       span_delete.addEventListener("click", Moosipurk.instance.deleteJar.bind(Homework.instance));
+       span_delete.addEventListener("click", Homework.instance.deleteJob.bind(Homework.instance));
 
-       return li;
+		   return li;
+	   }
+   };
 
-     }
-  };
+
       ///HELPER
       function guid(){
        var d = new Date().getTime();
