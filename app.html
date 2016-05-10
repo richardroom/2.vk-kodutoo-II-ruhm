@@ -1,52 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Koduste tööde ülevaade</title>
-  <script src="app.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Koduste tööde ülevaade</title>
+    <script src="app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
-	<nav class="menu">
+    <nav class="menu">
 
-		<ul class="menu-list">
-			<li class="menu-item"><a href="#home-view" class="menu-link home-view active-menu">Avaleht</a></li>
-			<li class="menu-item"><a href="#list-view" class="menu-link list-view">Kodutööde loend</a></li>
-			<li class="menu-item"><a href="#manage-view" class="menu-link manage-view">Uus kodutöö</a></li>
-		</ul>
+        <ul class="menu-list">
+            <li class="menu-item"><a href="#home-view" class="menu-link home-view active-menu">Avaleht</a></li>
+            <li class="menu-item"><a href="#list-view" class="menu-link list-view">Kodutööde loend</a></li>
+            <li class="menu-item"><a href="#manage-view" class="menu-link manage-view">Uus kodutöö</a></li>
+        </ul>
 
-	</nav>
+    </nav>
 
-	<main role="main">
+    <main role="main">
 
-		<div id="list-view">
-			<h1>Loend</h1>
-			<p class="loading">Laeb...</p><br>
-			<ul class="list-of-jobs"></ul>
-		</div>
-		<div id="manage-view">
-			<h1>Lisa uus kodutöö</h1>
-			<label for="title">Aine: </label><br>
-			<input type="text" name="title" class="title"><br>
+        <div id="list-view">
+            <h1>Loend</h1>
+            <p class="loading">Laeb...</p><br>
+            <ul class="list-of-jobs"></ul>
 
-			<label for="description">Kirjeldus: </label><br>
-			<input type="text" name="description" class="description"><br>
 
-      <label for="deadline">Tähtaeg: </label><br>
-      <input type="date" name="deadline" class="deadline"><br>
+            <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                           <span aria-hidden="true">&times;</span>
+                           <span class="sr-only">Sulge</span>
+                    </button>
+                            <h4 class="modal-title" id="myModalLabel">Muuda</h4>
+                        </div>
 
-      </br>
+                        <div class="modal-body">
 
-			<button class="add-new-job">Lisa uus kodutöö</button>
-		</div>
-		<div id="home-view">
-			<h1>Avaleht</h1>
+                            <form class="form-vertical" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="EditTitle">Aine nimi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="EditTitle" class="EditTitle" placeholder="Matemaatika">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="EditDescription">Kirjeldus</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="EditDescription" class="EditDescription" placeholder="Töövihikust lk 50-55">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="EditDeadline">Aeg</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" name="EditDeadline" class="EditDeadline">
+                                    </div>
+                                </div>
 
-      <p>Siia lehele saad lisada ja vaadata oma koduseid töid.</p>
+                                <button id="edit_close" type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+                                <button id="save" type="button" class="btn btn-default" data-dismiss="modal">Salvesta</button>
+                        </div>
 
-		</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	</main>
+
+        <div id="manage-view">
+            <h1>Lisa uus kodutöö</h1>
+            <label for="title">Aine: </label><br>
+            <input type="text" name="title" class="title"><br>
+
+            <label for="description">Kirjeldus: </label><br>
+            <input type="text" name="description" class="description"><br>
+
+            <label for="deadline">Tähtaeg: </label><br>
+            <input type="date" name="deadline" class="deadline"><br>
+
+            </br>
+
+            <button class="add-new-job">Lisa uus kodutöö</button>
+        </div>
+        <div id="home-view">
+            <h1>Avaleht</h1>
+
+            <p>Siia lehele saad lisada ja vaadata oma koduseid töid.</p>
+
+        </div>
+
+    </main>
 </body>
+
 </html>
